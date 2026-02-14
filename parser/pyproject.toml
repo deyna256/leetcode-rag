@@ -1,0 +1,20 @@
+[project]
+name = "leetcode-parser"
+version = "0.1.0"
+description = "LeetCode problem parser via GraphQL API"
+requires-python = ">=3.13"
+dependencies = [
+    "httpx>=0.27.0",
+    "pydantic>=2.5.0",
+    "loguru>=0.7.0",
+    "litestar>=2.0.0",
+    "uvicorn[standard]>=0.27.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.21.0",
+    "ruff>=0.1.0",
+    "ty>=0.0.10",
+]
