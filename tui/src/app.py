@@ -134,9 +134,9 @@ class ProblemLoaderApp(App):
 
     async def _fetch_loaded_slugs(self, client: httpx.AsyncClient) -> list[str]:
         try:
-            resp = await client.get(f"{RAG_URL}/problems", params={"limit": 10000})
+            resp = await client.get(f"{RAG_URL}/problems/slugs")
             resp.raise_for_status()
-            return [p["slug"] for p in resp.json()]
+            return resp.json()
         except Exception:
             return []
 

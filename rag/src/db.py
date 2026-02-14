@@ -144,6 +144,13 @@ async def get_problems(
     ]
 
 
+async def get_loaded_slugs() -> list[str]:
+    assert pg_pool is not None
+    async with pg_pool.acquire() as conn:
+        rows = await conn.fetch("SELECT slug FROM problems ORDER BY problem_id")
+    return [r["slug"] for r in rows]
+
+
 async def get_problem_text(problem_id: int, field: str) -> dict | None:
     if field not in ("statement", "editorial"):
         return None

@@ -82,6 +82,11 @@ async def list_problems(
     )
 
 
+@app.get("/problems/slugs", response_model=list[str])
+async def loaded_slugs():
+    return await db.get_loaded_slugs()
+
+
 @app.get("/problems/{problem_id}/statement")
 async def problem_statement(problem_id: int):
     result = await db.get_problem_text(problem_id, "statement")
