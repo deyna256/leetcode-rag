@@ -8,6 +8,7 @@ from qdrant_client.models import (
     Filter,
     MatchAny,
     MatchValue,
+    OptimizersConfigDiff,
     PayloadSchemaType,
     PointStruct,
     VectorParams,
@@ -53,6 +54,7 @@ def init_qdrant() -> QdrantClient:
         qdrant.create_collection(
             collection_name=COLLECTION,
             vectors_config=VectorParams(size=VECTOR_DIM, distance=Distance.COSINE),
+            optimizers_config=OptimizersConfigDiff(memmap_threshold=1000),
         )
     qdrant.create_payload_index(COLLECTION, "difficulty", PayloadSchemaType.KEYWORD)
     qdrant.create_payload_index(COLLECTION, "tags", PayloadSchemaType.KEYWORD)
